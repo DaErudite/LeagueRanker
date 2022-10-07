@@ -1,0 +1,98 @@
+<html>
+<title>
+  <%=id%>
+</title>
+<head>
+    <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 50%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+</head>
+    
+
+<body>
+
+    <% if (users.length > 0){ %>
+      <% users.forEach(user=> { %>
+      
+        <a class="single" href="/leagues/<%=user.leagueID%>/user/<%=user._id%>"> 
+        <h3 class="title"><%= user.name %></h3>
+        </a>
+          <h4><%= user.rating%></h4>
+      <% }) %>
+      <% } else { %>
+      <p> There are no users for display...</p>
+      <% } %>
+
+
+      <table>
+        
+        
+        <% if (users.length > 0){ %>
+          <tr>
+            <th>Participant</th>
+            <th>Rating</th>
+          </tr>
+          <% users.forEach(user=> { %>
+            
+            <tr>
+            <td>
+            <a class="single" href="/leagues/<%=user.leagueID%>/user/<%=user._id%>"> 
+            <h3 class="title"><%= user.name %></h3>
+            </a>
+            </td>
+              <td><%= user.rating%></td>
+            </tr>
+          <% }) %>
+          <% } %>
+        
+      </table>
+      
+    <h2>All Games</h2> 
+    <div class="league content">
+      <% if (games.length > 0){ %>
+        <% games.forEach(game=> { %>
+         
+          <h3 class="title"><%= game.competitor1 %> <%= game.competitor1Score %> - <%= game.competitor2Score %> <%= game.competitor2 %> </h3>
+        <% }) %>
+        <% } else { %>
+        <p> There are no games for display...</p>
+        <% } %>
+    </div>
+
+
+  
+
+    <h3>Add New User</h3>
+    <div class="create-user">
+      <form action="/leagues/<%=id%>" method="POST">
+      <label for="name">User name:</label>
+      <input type="text" id="name" name="name" required>
+      
+    
+      <button>Submit</button>
+      </form>
+    </div>
+
+
+
+    <div>
+      <a href="/leagues/<%=id%>/newgame">
+        <h4>Add a new game</h4>
+      </a>
+    </div>
+</body>
+</html>

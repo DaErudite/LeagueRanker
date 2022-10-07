@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<Title>Add New Game</Title>
+<body>
+
+    <h3>Add New Game</h3>
+    <div class="create-game">
+      <form action="/leagues/<%=id%>/newgame" method="POST">
+      <label for="competitor1">First competitor:</label>
+      <input type="text" id="competitor1" name="competitor1" required>
+      <label for="competitor2">Second competitor:</label>
+      <input type="text" id="competitor2" name="competitor2" required>
+      <label for="competitor1Score">First competitor score:</label>
+      <input type="text" id="competitor1Score" name="competitor1Score" required>
+      <label for="competitor2Score">Second competitor score:</label>
+      <input type="text" id="competitor2Score" name="competitor2Score" required>
+      
+    
+      <button>Submit</button>
+      </form>
+    </div>
+</body>
+</html>

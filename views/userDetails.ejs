@@ -1,0 +1,18 @@
+<html>
+    <title>User Details</title>
+    <p>Mock page for User details</p>
+
+
+<body>
+
+        <% if (games.length > 0){ %>
+          <% games.forEach(game=> { %>
+           
+            <h3 class="title"><%= game.competitor1 %> <%= game.competitor1Score %> - <%= game.competitor2Score %> <%= game.competitor2 %> </h3>
+          <% }) %>
+          <% } else { %>
+          <p> There are no games for display...</p>
+          <% } %>
+        
+</body>
+</html>

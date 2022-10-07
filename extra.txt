@@ -1,0 +1,98 @@
+<html>
+<body>
+
+<div class="league content">
+<h2>All leagues</h2>
+
+<% if (leagues.length > 0){ %>
+<% leagues.forEach(league=> { %>
+    <select id="leagues" name="leagues">
+    </select>
+<a class="single" href="/leagues/<%=league._id%>">
+    <h3 class="title"><%= league.leagueName %></h3>
+</a>
+<% }) %>
+<% } else { %>
+<p> There are no leagues for display...</p>
+<% } %>
+
+</div>
+
+<script>
+    let dropdown = document.getElementById('leagues');
+    dropdown.length = 0;
+    
+    let defaultOption = document.createElement('option');
+    defaultOption.text = 'Choose League';
+    
+    dropdown.add(defaultOption);
+    dropdown.selectedIndex = 0;
+    
+    const url = 'http://127.0.0.1:8000/leagues/myjson';
+    
+    fetch(url)  
+      .then(  
+        function(response) {  
+          if (response.status !== 200) {  
+            console.warn('Looks like there was a problem. Status Code: ' + 
+              response.status);  
+            return;  
+          }
+    
+          // Examine the text in the response  
+          response.json().then(function(data) {  
+            console.log(data)
+            let option;
+        
+            for (let i = 0; i < data.length; i++) {
+              option = document.createElement('option');
+                option.text = data[i].leagueName;
+                console.log(option.test)
+                option.value = data[i]._id;
+                dropdown.add(option);
+            }    
+          });  
+        }  
+      )  
+      .catch(function(err) {  
+        console.error('Fetch Error -', err);  
+      });
+    </script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+var $select= $(#leagues);
+
+$.getJSON('http://127.0.0.1:8000/leagues/myjson', function(data)(
+    $select.html('');
+
+    for (var i=0; i < data['people'].length; i++){
+        $select.append('<option id="'+ data['people'][i]['_id']+ '">'+ data['people'][i]['leagueName'] + '</option>'); 
+    }
+));
+
+
+
+    dropdown.forEach(option=> { console.log(option.value)})
+
+
+
+
+
+//////Check nodejs blog github for original details ejs file
+
+<a class="single" href="/leagues/<%=league._id%>"></a>
+
+<label for="password">League Key:</label>
+      <input type="password" id="password" name="password" required>

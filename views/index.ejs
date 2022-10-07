@@ -1,0 +1,89 @@
+<html>
+<body>
+
+<div class="league content">
+<h2>All leagues</h2>
+
+<% if (leagues.length > 0){ %>
+  <select id="leagues" onchange="update()" name="leagues" placeholder="Choose league">
+  </select>
+<% leagues.forEach(league=> { %>
+<a class="single" href="/leagues/<%=league._id%>">
+    <h3 class="title"><%= league.leagueName %></h3>
+</a>
+<% }) %>
+<% } else { %>
+<p> There are no leagues for display...</p>
+<% } %>
+
+<h3>Add New League</h3>
+  <div class="create-league">
+    <form action="/leagues" method="POST">
+    <label for="leagueName">League name:</label>
+    <input type="text" id="leagueName" name="leagueName" required>
+    <label for="password">League Key:</label>
+    <input type="password" id="password" name="password" required>
+  
+    <button>Submit</button>
+    </form>
+  </div>
+
+
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', ()=>{
+
+  var dropdown= document.getElementById('leagues');
+  var select = document.querySelector('leagues');
+
+
+
+  fetch('http://127.0.0.1:8000/leagues/myjson').then(res=>{
+  return res.json();
+    }).then(leagues => {
+    let output = "";
+    leagues.forEach(league => {
+        console.log(league)
+      output += `
+      
+      <option value="${league._id}">${league.leagueName}</option>`;
+    })
+
+  dropdown.innerHTML = output;
+
+  
+  
+  
+  dropdown.onchange = () => {
+  if (dropdown.selectedIndex !== 0) {
+    window.location.href = "/leagues/"+dropdown.value;
+  }
+  };
+
+
+  }).catch(err=>{
+  console.log(err);
+  })
+
+})
+
+    function update(){
+      var x = document.getElementById("leagues").value;
+      //document.getElementById("demo").innerHTML = "You selected: " + x;
+      console.log(x);
+    
+    }
+
+
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
