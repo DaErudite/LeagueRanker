@@ -8,4 +8,4 @@ Ranking is done using ELO system developed by Arpad Elo
 
 React frontend is currently in the works. It's a big project :)
 
-Any ideas will be greatly appreciated
+Any ideas will be greatly appreciated  
